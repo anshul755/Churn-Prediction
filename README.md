@@ -6,7 +6,7 @@ This project uses an Artificial Neural Network (ANN) to predict whether a custom
 
 ## 📂 Files Included
 
-- `Cus Churn final code.ipynb` – Complete notebook including:
+- `Churn final experiments.ipynb` – Complete notebook including:
   - Data preprocessing
   - Exploratory Data Analysis (EDA)
   - ANN model building and evaluation
