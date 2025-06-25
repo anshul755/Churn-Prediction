@@ -16,7 +16,7 @@ with open('onehot_encoder_geo_r.pkl','rb') as file:
 with open('scaler_r.pkl','rb') as file:
     scaler=pickle.load(file)
 
-st.title('Customer Churn Prediction')
+st.title('Customer Salary Prediction')
 
 geography=st.selectbox('Geography',onehot_encoder_geo.categories_[0])
 
