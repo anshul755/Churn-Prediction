@@ -5,15 +5,15 @@ from sklearn.preprocessing import StandardScaler,LabelEncoder,OneHotEncoder
 import pandas as pd
 import pickle
 
-model=tf.keras.models.load_model('model.h5')
+model=tf.keras.models.load_model('regression.h5')
 
-with open('label_encoder_gender.pkl','rb') as file:
+with open('label_encoder_gender_r.pkl','rb') as file:
     label_encoder_gender=pickle.load(file)
 
-with open('onehot_encoder_geo.pkl','rb') as file:
+with open('onehot_encoder_geo_r.pkl','rb') as file:
     onehot_encoder_geo=pickle.load(file)
 
-with open('scaler.pkl','rb') as file:
+with open('scaler_r.pkl','rb') as file:
     scaler=pickle.load(file)
 
 st.title('Customer Churn Prediction')
@@ -28,7 +28,7 @@ balance=st.number_input('Balance')
 
 credit_score=st.number_input('Credit Score')
 
-estimated_salary=st.number_input('Estimated Salary')
+exited=st.selectbox('Exited',[0,1])
 
 tenure=st.slider('Tenure',0,10)
 
@@ -48,7 +48,7 @@ if st.button('Predict'):
         'NumOfProducts':[num_of_products],
         'HasCrCard':[has_cr_card],
         'IsActiveMember':[is_active_member],
-        'EstimatedSalary':[estimated_salary]
+        'Exited':[exited]
     })
 
     geo_encoded=onehot_encoder_geo.transform([[geography]]).toarray()
@@ -60,11 +60,6 @@ if st.button('Predict'):
 
     prediction=model.predict(input_data_scaled)
 
-    prediction_probability=prediction[0][0]
+    prediction_salary=prediction[0][0]
 
-    st.write('Churn Probability:',prediction_probability)
-
-    if prediction_probability>0.5:
-        st.write('Customer Likely To Churn.')
-    else:
-        st.write('Customer is not Likely to Churn.')
+    st.write('Estimated Salary:',prediction_salary)
