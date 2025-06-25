@@ -1,43 +1,94 @@
-# 🔮 Churn Prediction using Deep Learning
+__Churn Prediction Web App__  
+A Streamlit-based application for predicting customer churn and salary estimation using regression and classification models trained on the Churn Modelling dataset.  
 
-This project uses an Artificial Neural Network (ANN) to predict whether a customer is likely to churn based on service usage patterns and demographic data.
+**🌐 Live Demos**  
+- [Regression App](https://annchurnregression.streamlit.app/)  
+- [Classification App](https://annchurnpredictorclassifier.streamlit.app/)  
 
----
+## Table of Contents  
+- [Project Overview](#project-overview)  
+- [Features](#features)  
+- [Getting Started](#getting-started)  
+  - [Prerequisites](#prerequisites)  
+  - [Installation](#installation)  
+- [Usage](#usage)  
+  - [Running the App](#running-the-app)  
+  - [Streamlit Interface](#streamlit-interface)  
+- [Model Artifacts](#model-artifacts)  
+- [TensorBoard](#tensorboard)  
+- [Dependencies](#dependencies)  
 
-## 📂 Files Included
+---  
 
-- `Churn final experiments.ipynb` – Complete notebook including:
-  - Data preprocessing
-  - Exploratory Data Analysis (EDA)
-  - ANN model building and evaluation
-- `Churn_Modelling.csv` – Dataset used for training and evaluation
+## Project Overview  
+This repository contains two customer churn prediction pipelines built on the Churn Modelling dataset:  
+1. **Regression model** to estimate customer’s estimated salary (regression task).  
+2. **Classification model** to predict whether a customer will churn (binary classification task).  
 
----
+Both pipelines include data preprocessing, model training using `tensorflow.keras`, and a Streamlit UI for interactive input and real-time predictions.  
 
-## 🚀 Project Workflow
+## Features  
+- **Interactive UI**: Select input features and get live predictions in Streamlit.  
+- **Dual Pipelines**: Separate workflows for regression and classification.  
+- **Preprocessing**: Label encoding, one-hot encoding, and feature scaling included via `pickle` artifacts.  
+- **TensorBoard Integration**: Monitor training metrics and loss curves.  
 
-1. **Data Preprocessing**
-   - Handled missing values and encoded categorical features
-   - Scaled numerical features for ANN compatibility
+## Getting Started
 
-2. **Exploratory Data Analysis (EDA)**
-   - Visualized churn trends
-   - Identified key patterns affecting customer churn
+### Installation  
+1. Clone the repository:  
+   ```bash
+   git clone https://github.com/anshul755/Churn-Prediction.git
+   cd Churn-Prediction
+   ```  
+2. Create and activate a virtual environment (optional but recommended):  
+   ```bash
+   python3.10 -m venv tf310
+   source tf310/bin/activate      # Linux/macOS
+   tf310\Scripts\activate         # Windows
+   ```  
+3. Install dependencies:  
+   ```bash
+   pip install -r requirements.txt
+   ```  
 
-3. **Model Building: Artificial Neural Network**
-   - Built a feedforward ANN using Keras (TensorFlow backend)
-   - Configured input, hidden, and output layers
-   - Applied dropout to reduce overfitting
+## Usage  
+### Running the App  
+- **Regression App**:  
+  ```bash
+  streamlit run app_regression.py
+  ```  
+- **Classification App**:  
+  ```bash
+  streamlit run app_classification.py
+  ```  
 
-4. **Model Evaluation**
-   - Evaluated on accuracy
-   - Visualized performance using Tensorboard
+### Streamlit Interface  
+1. **Geography**: Select customer’s country.  
+2. **Gender**: Choose customer’s gender.  
+3. **Age**, **Balance**, **Credit Score**: Input numeric features via sliders or input fields.  
+4. **Other Features**: Tenure, number of products, active member flag, etc.  
+5. **Predict** button: View the model’s output (estimated salary or churn probability/label).  
 
----
+## Model Artifacts  
+Trained models and preprocessing objects are stored in the `models/` directory:  
+- `.h5` files: Keras model weights for regression and classification.  
+- `.pkl` files: `LabelEncoder`, `OneHotEncoder`, and `StandardScaler` instances used at inference time.  
 
-## 📦 Requirements
-
-Install dependencies with:
-
+## TensorBoard  
+To visualize training logs:  
 ```bash
-pip install -r requirements.txt
+tensorboard --logdir logs/fit  # Regression logs
+tensorboard --logdir regression/fit  # Classification logs
+```  
+Open `http://localhost:6006` in your browser.  
+
+## Dependencies  
+- `pandas`  
+- `numpy`  
+- `scikit-learn`  
+- `tensorflow`
+- `pickle`  
+- `streamlit`  
+
+Refer to `requirements.txt` for exact versions.
