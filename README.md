@@ -30,8 +30,8 @@ This project uses an Artificial Neural Network (ANN) to predict whether a custom
    - Applied dropout to reduce overfitting
 
 4. **Model Evaluation**
-   - Evaluated on accuracy, precision, recall, and confusion matrix
-   - Visualized performance using classification metrics
+   - Evaluated on accuracy
+   - Visualized performance using Tensorboard
 
 ---
 
